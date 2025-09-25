@@ -1,26 +1,258 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  
+  /* Custom palette colors */
+  --color-caribbean-green: var(--caribbean-green);
+  --color-dodger-blue: var(--dodger-blue);
+  --color-royal-purple: var(--royal-purple);
+  --color-buttercup: var(--buttercup);
+  --color-muddy-waters: var(--muddy-waters);
+  --color-viking: var(--viking);
+  
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.625rem;
+  /* Primary Colors */
+  --background: oklch(0.98 0 0);       /* Alabaster (#fcfcfc) */
+  --foreground: oklch(0.04 0 0);       /* Black (#010101) */
+  --card: oklch(0.98 0 0);             /* Alabaster (#fcfcfc) */
+  --card-foreground: oklch(0.04 0 0);  /* Black (#010101) */
+  --popover: oklch(0.98 0 0);          /* Alabaster (#fcfcfc) */
+  --popover-foreground: oklch(0.04 0 0); /* Black (#010101) */
+  
+  /* Caribbean Green and Dodger Blue for primary actions */
+  --primary: oklch(0.69 0.15 160);     /* Caribbean Green (#02bb86) */
+  --primary-foreground: oklch(0.98 0 0); /* Alabaster (#fcfcfc) */
+  
+  /* Royal Purple and Buttercup for secondary actions */
+  --secondary: oklch(0.55 0.20 300);   /* Royal Purple (#8645a5) */
+  --secondary-foreground: oklch(0.98 0 0); /* Alabaster (#fcfcfc) */
+  
+  /* Silver and Emperor Gray for neutral elements */
+  --muted: oklch(0.77 0 0);            /* Silver (#bdbdbd) */
+  --muted-foreground: oklch(0.4 0 0);  /* Emperor Gray (#4f4f4f) */
+  
+  /* Muddy Waters for accent */
+  --accent: oklch(0.65 0.10 50);       /* Muddy Waters (#bb855f) */
+  --accent-foreground: oklch(0.98 0 0); /* Alabaster (#fcfcfc) */
+  
+  --destructive: oklch(0.6 0.25 30);   /* Reddish */
+  --border: oklch(0.77 0 0);           /* Silver (#bdbdbd) */
+  --input: oklch(0.77 0 0);            /* Silver (#bdbdbd) */
+  --ring: oklch(0.4 0 0);              /* Emperor Gray (#4f4f4f) */
+  
+  /* Chart colors using accent palette */
+  --chart-1: oklch(0.69 0.15 160);     /* Caribbean Green (#02bb86) */
+  --chart-2: oklch(0.60 0.20 240);     /* Viking (#5d8bb) */
+  --chart-3: oklch(0.55 0.20 250);     /* Dodger Blue (#3486f3) */
+  --chart-4: oklch(0.55 0.20 300);     /* Royal Purple (#8645a5) */
+  --chart-5: oklch(0.80 0.15 80);      /* Buttercup (#f4a40f) */
+  
+  --sidebar: oklch(0.98 0 0);          /* Alabaster (#fcfcfc) */
+  --sidebar-foreground: oklch(0.04 0 0); /* Black (#010101) */
+  --sidebar-primary: oklch(0.69 0.15 160); /* Caribbean Green (#02bb86) */
+  --sidebar-primary-foreground: oklch(0.98 0 0); /* Alabaster (#fcfcfc) */
+  --sidebar-accent: oklch(0.65 0.10 50); /* Muddy Waters (#bb855f) */
+  --sidebar-accent-foreground: oklch(0.98 0 0); /* Alabaster (#fcfcfc) */
+  --sidebar-border: oklch(0.77 0 0);   /* Silver (#bdbdbd) */
+  --sidebar-ring: oklch(0.4 0 0);      /* Emperor Gray (#4f4f4f) */
+  
+  /* Custom palette variables */
+  --caribbean-green: oklch(0.69 0.15 160); /* #02bb86 */
+  --dodger-blue: oklch(0.55 0.20 250);     /* #3486f3 */
+  --royal-purple: oklch(0.55 0.20 300);    /* #8645a5 */
+  --buttercup: oklch(0.80 0.15 80);        /* #f4a40f */
+  --muddy-waters: oklch(0.65 0.10 50);     /* #bb855f */
+  --viking: oklch(0.60 0.20 240);          /* #5d8bb */
+  
+  /* New Navy-Teal Gradient Palette */
+  --color-primary-navy: #0B1E3D;
+  --color-primary-teal: #1ED6C8;
+  --color-secondary-navy-light: #1a3454;
+  --color-secondary-teal-light: #4de0d6;
+  --color-secondary-teal-dark: #0ba398;
+  --color-accent-teal-50: #f0fdfc;
+  --color-accent-teal-100: #ccfbf1;
+  --color-accent-teal-200: #99f6e4;
+  --color-accent-teal-300: #5eead4;
+  --color-accent-teal-400: #2dd4bf;
+  --color-accent-teal-500: #14b8a6;
+  --color-accent-teal-600: #0d9488;
+  --color-accent-teal-700: #0f766e;
+  --color-accent-teal-800: #115e59;
+  --color-accent-teal-900: #134e4a;
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
+}
+
+.dark {
+  /* Primary Colors - dark mode (inverted) */
+  --background: oklch(0.04 0 0);       /* Black (#010101) */
+  --foreground: oklch(0.98 0 0);       /* Alabaster (#fcfcfc) */
+  --card: oklch(0.2 0 0);              /* Darker version of Emperor Gray */
+  --card-foreground: oklch(0.98 0 0);  /* Alabaster (#fcfcfc) */
+  --popover: oklch(0.2 0 0);           /* Darker version of Emperor Gray */
+  --popover-foreground: oklch(0.98 0 0); /* Alabaster (#fcfcfc) */
+  
+  /* Caribbean Green and Dodger Blue brightened for dark mode */
+  --primary: oklch(0.75 0.2 160);      /* Brighter Caribbean Green */
+  --primary-foreground: oklch(0.04 0 0); /* Black (#010101) */
+  
+  /* Royal Purple and Buttercup brightened for dark mode */
+  --secondary: oklch(0.6 0.25 300);    /* Brighter Royal Purple */
+  --secondary-foreground: oklch(0.04 0 0); /* Black (#010101) */
+  
+  /* Silver and Emperor Gray adjusted for dark mode */
+  --muted: oklch(0.3 0 0);             /* Darker Silver */
+  --muted-foreground: oklch(0.77 0 0); /* Lighter Emperor Gray */
+  
+  /* Muddy Waters brightened for dark mode */
+  --accent: oklch(0.7 0.15 50);        /* Brighter Muddy Waters */
+  --accent-foreground: oklch(0.04 0 0); /* Black (#010101) */
+  
+  --destructive: oklch(0.7 0.3 30);    /* Brighter Reddish */
+  --border: oklch(0.3 0 0);            /* Darker Silver */
+  --input: oklch(0.3 0 0);             /* Darker Silver */
+  --ring: oklch(0.6 0 0);              /* Lighter Emperor Gray */
+  
+  /* Chart colors brightened for dark mode */
+  --chart-1: oklch(0.75 0.2 160);      /* Brighter Caribbean Green */
+  --chart-2: oklch(0.65 0.25 240);     /* Brighter Viking */
+  --chart-3: oklch(0.6 0.25 250);      /* Brighter Dodger Blue */
+  --chart-4: oklch(0.6 0.25 300);      /* Brighter Royal Purple */
+  --chart-5: oklch(0.85 0.2 80);       /* Brighter Buttercup */
+  
+  --sidebar: oklch(0.15 0 0);          /* Slightly lighter than Black */
+  --sidebar-foreground: oklch(0.98 0 0); /* Alabaster (#fcfcfc) */
+  --sidebar-primary: oklch(0.75 0.2 160); /* Brighter Caribbean Green */
+  --sidebar-primary-foreground: oklch(0.04 0 0); /* Black (#010101) */
+  --sidebar-accent: oklch(0.7 0.15 50); /* Brighter Muddy Waters */
+  --sidebar-accent-foreground: oklch(0.04 0 0); /* Black (#010101) */
+  --sidebar-border: oklch(0.3 0 0);    /* Darker Silver */
+  --sidebar-ring: oklch(0.6 0 0);      /* Lighter Emperor Gray */
+  
+  /* Custom palette variables - brightened for dark mode */
+  --caribbean-green: oklch(0.75 0.2 160);  /* Brighter #02bb86 */
+  --dodger-blue: oklch(0.6 0.25 250);      /* Brighter #3486f3 */
+  --royal-purple: oklch(0.6 0.25 300);     /* Brighter #8645a5 */
+  --buttercup: oklch(0.85 0.2 80);         /* Brighter #f4a40f */
+  --muddy-waters: oklch(0.7 0.15 50);      /* Brighter #bb855f */
+  --viking: oklch(0.65 0.25 240);          /* Brighter #5d8bb */
+}
+
+/* Gradient Definitions */
+@layer utilities {
+  .bg-gradient-primary {
+    background: linear-gradient(180deg, var(--color-primary-navy) 0%, var(--color-primary-teal) 100%);
+  }
+  
+  .bg-gradient-primary-diagonal {
+    background: linear-gradient(135deg, var(--color-primary-navy) 0%, var(--color-primary-teal) 100%);
+  }
+  
+  .bg-gradient-accent {
+    background: linear-gradient(135deg, var(--color-accent-teal-500) 0%, var(--color-accent-teal-600) 100%);
+  }
+  
+  /* Text Colors */
+  .text-primary-navy {
+    color: var(--color-primary-navy);
+  }
+  
+  .text-primary-teal {
+    color: var(--color-primary-teal);
+  }
+  
+  /* Border Colors */
+  .border-primary-teal {
+    border-color: var(--color-primary-teal);
+  }
+  
+  /* Focus States with WCAG AA Contrast */
+  .focus-teal:focus {
+    outline: 2px solid var(--color-accent-teal-500);
+    outline-offset: 2px;
+  }
+  
+  /* Button Variants with High Contrast */
+  .btn-primary {
+    background-color: var(--color-accent-teal-600);
+    color: white;
+    transition: background-color 0.2s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--color-accent-teal-700);
+  }
+  
+  .btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

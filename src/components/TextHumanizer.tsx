@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { HumanizeResponse } from '@/types';
 import { copyToClipboard, getTextStats } from '@/lib/textUtils';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import TextStats from './TextStats';
 import InputDiffViewer from './InputDiffViewer';
 import OutputDiffViewer from './OutputDiffViewer';
@@ -77,46 +79,35 @@ export default function TextHumanizer() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
+        <h2 className="text-2xl font-bold text-foreground mb-4">
           Transform AI-Generated Text into Human-Like Content
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <p className="text-muted-foreground max-w-2xl mx-auto">
           Paste your AI-generated text below and we&apos;ll make it sound more natural, 
           conversational, and human-like by reducing formality and adding natural language patterns.
         </p>
-        {outputText && (
-          <div className={`mt-3 inline-flex items-center px-2 py-1 rounded text-xs font-medium transition-all ${
-            showDiff 
-              ? 'bg-orange-100 text-orange-700' 
-              : 'bg-blue-100 text-blue-700'
-          }`}>
-            {showDiff ? '✏️ Edit' : '🔍 Diff'}
-          </div>
-        )}
       </div>
 
       {/* Central Toggle Button */}
       {outputText && (
         <div className="flex justify-center mb-6">
-          <button
+          <Button
             onClick={() => setShowDiff(!showDiff)}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all text-sm font-medium ${
-              showDiff 
-                ? 'bg-orange-600 hover:bg-orange-700 text-white shadow-lg ring-2 ring-orange-300' 
-                : 'bg-blue-600 hover:bg-blue-700 text-white'
-            }`}
+            variant="outline"
+            size="sm"
+            className="text-xs border-muted-foreground/20 text-muted-foreground hover:bg-muted/50 hover:text-foreground"
           >
             {showDiff ? (
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
               </svg>
             ) : (
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
               </svg>
             )}
-            <span>{showDiff ? '✏️ Edit Mode' : '🔍 Show Changes'}</span>
-          </button>
+            <span>{showDiff ? 'Edit Mode' : 'Show Changes'}</span>
+          </Button>
         </div>
       )}
 
@@ -124,15 +115,15 @@ export default function TextHumanizer() {
         {/* Input Section */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-gray-900">Original Text</h3>
+            <h3 className="text-lg font-semibold text-foreground">Original Text</h3>
             <div className="flex items-center space-x-4">
-              <label className="text-sm font-medium text-black">
+              <label className="text-sm font-medium text-foreground">
                 Intensity:
               </label>
               <select
                 value={intensity}
                 onChange={(e) => setIntensity(e.target.value as 'light' | 'medium' | 'strong')}
-                className="px-3 py-1 border border-gray-300 rounded-md text-sm text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="px-3 py-1 border border-border rounded-md text-sm text-foreground bg-background focus:ring-2 focus:ring-primary focus:border-primary"
               >
                 <option value="light">Light</option>
                 <option value="medium">Medium</option>
@@ -151,11 +142,11 @@ export default function TextHumanizer() {
             <textarea
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              placeholder={showDiff && outputText ? "✏️ Edit mode: Modify your original text here..." : "Paste your AI-generated text here..."}
-              className={`w-full h-64 p-4 rounded-lg resize-none text-gray-900 transition-all ${
+              placeholder={showDiff && outputText ? "Edit mode: Modify your original text here..." : "Paste your AI-generated text here..."}
+              className={`w-full h-64 p-4 rounded-lg resize-none text-foreground transition-all ${
                 showDiff && outputText 
-                  ? 'border-2 border-orange-400 bg-orange-50 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 shadow-inner' 
-                  : 'border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                  ? 'border-2 border-buttercup bg-buttercup/10 focus:ring-2 focus:ring-buttercup focus:border-buttercup shadow-inner' 
+                  : 'border border-border bg-background focus:ring-2 focus:ring-primary focus:border-primary'
               }`}
             />
           )}
@@ -165,37 +156,40 @@ export default function TextHumanizer() {
           )}
           
           <div className="flex space-x-3">
-            <button
+            <Button
               onClick={handleHumanize}
               disabled={!inputText.trim() || isLoading}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-colors"
+              variant="caribbean-green"
+              className="flex-1 py-6"
             >
               {isLoading ? 'Humanizing...' : 'Humanize Text'}
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={handleClear}
-              className="px-6 py-3 border border-gray-300 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+              variant="outline"
+              className="py-6 px-6"
             >
               Clear
-            </button>
+            </Button>
           </div>
         </div>
 
         {/* Output Section */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-gray-900">Humanized Text</h3>
+            <h3 className="text-lg font-semibold text-foreground">Humanized Text</h3>
             <div className="flex items-center space-x-2">
               {outputText && (
-                <button
+                <Button
                   onClick={handleCopy}
-                  className="flex items-center space-x-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
+                  variant="caribbean-green"
+                  size="sm"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                   </svg>
                   <span>{copySuccess ? 'Copied!' : 'Copy'}</span>
-                </button>
+                </Button>
               )}
             </div>
           </div>
@@ -210,11 +204,11 @@ export default function TextHumanizer() {
             <textarea
               value={outputText}
               readOnly
-              placeholder={showDiff && outputText ? "✏️ Edit mode: Plain text view" : "Humanized text will appear here..."}
-              className={`w-full h-64 p-4 rounded-lg resize-none transition-all ${
+              placeholder={showDiff && outputText ? "Edit mode: Plain text view" : "Humanized text will appear here..."}
+              className={`w-full h-64 p-4 rounded-lg resize-none transition-all text-foreground ${
                 showDiff && outputText 
-                  ? 'border-2 border-orange-400 bg-orange-50 text-gray-900 shadow-inner' 
-                  : 'border border-gray-300 bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                  ? 'border-2 border-buttercup bg-buttercup/10 shadow-inner' 
+                  : 'border border-border bg-muted/50 focus:ring-2 focus:ring-primary focus:border-primary'
               }`}
             />
           )}
@@ -224,68 +218,76 @@ export default function TextHumanizer() {
           )}
           
           {improvements.length > 0 && (
-            <div className="bg-blue-50 rounded-lg p-4">
-              <h4 className="font-medium text-blue-900 mb-2">Improvements Made:</h4>
-              <ul className="space-y-1">
-                {improvements.map((improvement, index) => (
-                  <li key={index} className="text-sm text-blue-700 flex items-start">
-                    <span className="mr-2">•</span>
-                    <span>{improvement}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <Card className="bg-primary/10 border-primary/20">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base text-primary">Improvements Made:</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-1">
+                  {improvements.map((improvement, index) => (
+                    <li key={index} className="text-sm text-primary/90 flex items-start">
+                      <span className="mr-2">•</span>
+                      <span>{improvement}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
           )}
         </div>
       </div>
       
       {/* Features Section */}
-      <div className="mt-16 bg-gray-50 rounded-xl p-8">
-        <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">
-          What Our Humanizer Does
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="text-center">
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-              </svg>
+      <Card className="mt-16 bg-muted/30">
+        <CardHeader>
+          <CardTitle className="text-xl text-center">
+            What Our Humanizer Does
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="w-12 h-12 bg-caribbean-green/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6 text-caribbean-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+              </div>
+              <h4 className="font-medium text-foreground mb-2">Add Contractions</h4>
+              <p className="text-sm text-muted-foreground">Converts formal phrases like &quot;do not&quot; to &quot;don&apos;t&quot;</p>
             </div>
-            <h4 className="font-medium text-gray-900 mb-2">Add Contractions</h4>
-            <p className="text-sm text-gray-600">Converts formal phrases like &quot;do not&quot; to &quot;don&apos;t&quot;</p>
-          </div>
-          
-          <div className="text-center">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-              <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+            
+            <div className="text-center">
+              <div className="w-12 h-12 bg-dodger-blue/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6 text-dodger-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h4 className="font-medium text-foreground mb-2">Simplify Language</h4>
+              <p className="text-sm text-muted-foreground">Replaces complex phrases with simpler alternatives</p>
             </div>
-            <h4 className="font-medium text-gray-900 mb-2">Simplify Language</h4>
-            <p className="text-sm text-gray-600">Replaces complex phrases with simpler alternatives</p>
-          </div>
-          
-          <div className="text-center">
-            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-              <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-1l-4 4z" />
-              </svg>
+            
+            <div className="text-center">
+              <div className="w-12 h-12 bg-royal-purple/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6 text-royal-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-1l-4 4z" />
+                </svg>
+              </div>
+              <h4 className="font-medium text-foreground mb-2">Natural Flow</h4>
+              <p className="text-sm text-muted-foreground">Adds casual starters and transition words</p>
             </div>
-            <h4 className="font-medium text-gray-900 mb-2">Natural Flow</h4>
-            <p className="text-sm text-gray-600">Adds casual starters and transition words</p>
-          </div>
-          
-          <div className="text-center">
-            <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-              <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-              </svg>
+            
+            <div className="text-center">
+              <div className="w-12 h-12 bg-buttercup/20 rounded-lg flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6 text-buttercup" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                </svg>
+              </div>
+              <h4 className="font-medium text-foreground mb-2">Active Voice</h4>
+              <p className="text-sm text-muted-foreground">Converts passive voice to more engaging active voice</p>
             </div>
-            <h4 className="font-medium text-gray-900 mb-2">Active Voice</h4>
-            <p className="text-sm text-gray-600">Converts passive voice to more engaging active voice</p>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
