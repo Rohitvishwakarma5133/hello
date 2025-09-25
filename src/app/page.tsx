@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { Clipboard } from 'lucide-react';
 
 export default function Home() {
   const [inputText, setInputText] = useState('');
@@ -97,68 +96,101 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Text Input Area */}
-          <div className="bg-white border border-slate-100 rounded-xl shadow-sm p-6 mb-6">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-4">
-                <label className="text-base font-medium text-slate-700">Your Text</label>
-                <select className="bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-slate-600 text-sm">
-                  <option>Default</option>
-                  <option>Academic</option>
-                  <option>Creative</option>
-                  <option>Professional</option>
-                </select>
-              </div>
-            </div>
-            
-            {/* Textarea with centered paste button overlay */}
-            <div className="relative">
-              <textarea
-                value={inputText}
-                onChange={(e) => setInputText(e.target.value)}
-                placeholder="Paste your text here..."
-                className="w-full min-h-[200px] p-4 rounded-xl border border-slate-200 focus:ring-2 focus:ring-green-400 focus:outline-none focus:border-green-400 text-base leading-normal shadow-sm placeholder:text-slate-400 resize-none"
-              />
-              
-              {/* Centered Paste Button - only show when textarea is empty */}
-              {!inputText && (
-                <button 
-                  onClick={handlePasteText}
-                  className="absolute inset-0 m-auto h-10 w-32 bg-white border border-green-400 text-green-500 rounded-full text-sm font-medium hover:bg-green-50 transition-colors flex items-center justify-center gap-2"
-                >
-                  <Clipboard className="w-4 h-4" />
-                  Paste Text
-                </button>
-              )}
-            </div>
-            
-            <div className="flex justify-between items-center mt-3">
-              <div className="flex items-center gap-4">
-                {/* Cleaner word counter */}
-                <span className="text-xs text-slate-400">
-                  {inputText.trim().split(/\s+/).filter(word => word.length > 0).length} / 500 words
-                </span>
-                {aiScore && (
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs text-slate-400">Human Score:</span>
-                    <span className={`text-xs font-medium ${
-                      aiScore >= 80 ? 'text-green-600' : 
-                      aiScore >= 60 ? 'text-yellow-600' : 'text-red-500'
-                    }`}>
-                      {aiScore}%
+          {/* Text Input Area - Competitor Style */}
+          <section className="container mx-auto px-4 mb-12">
+            <div className="grid grid-cols-1 gap-6 max-w-6xl mx-auto">
+              <div className="bg-white rounded-[16px] shadow-lg overflow-hidden flex flex-col">
+                
+                {/* Header with title and mode selector */}
+                <div className="p-4 flex justify-between items-center">
+                  <h2 className="font-semibold">Your Text</h2>
+                  <button 
+                    className="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent h-10 px-4 py-2 flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 cursor-pointer"
+                    type="button"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-sparkles h-4 w-4">
+                      <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+                      <path d="M20 3v4" />
+                      <path d="M22 5h-4" />
+                      <path d="M4 17v2" />
+                      <path d="M5 18H3" />
+                    </svg>
+                    Default
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down h-4 w-4">
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </button>
+                </div>
+                
+                {/* Textarea with centered paste button */}
+                <div className="px-4 flex-1 relative">
+                  <textarea 
+                    value={inputText}
+                    onChange={(e) => setInputText(e.target.value)}
+                    placeholder="Paste your text here..."
+                    className="flex rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 w-full border-none outline-none focus:outline-none resize-none min-h-[405px] ms-0 ps-0"
+                    style={{ minHeight: '406px', height: '400px' }}
+                  />
+                  
+                  {/* Centered Paste Button - only show when textarea is empty */}
+                  {!inputText && (
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <button 
+                        onClick={handlePasteText}
+                        className="justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border bg-background h-9 flex items-center gap-2 rounded-full px-4 py-2 border-green-500 text-green-500 hover:bg-green-50 hover:text-green-600 pointer-events-auto"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-clipboard h-4 w-4">
+                          <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+                          <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                        </svg>
+                        Paste Text
+                      </button>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Footer with word count and buttons */}
+                <div className="p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                  <div className="flex items-center mb-4 md:mb-0">
+                    <span className="text-sm text-gray-500">
+                      {inputText.trim().split(/\s+/).filter(word => word.length > 0).length} / 500 words
                     </span>
+                    {aiScore && (
+                      <span className="ml-4 text-sm text-gray-500">
+                        Human Score: <span className={`font-medium ${
+                          aiScore >= 80 ? 'text-green-600' : 
+                          aiScore >= 60 ? 'text-yellow-600' : 'text-red-500'
+                        }`}>{aiScore}%</span>
+                      </span>
+                    )}
                   </div>
-                )}
+                  <div className="flex gap-2 w-full sm:w-auto">
+                    <button 
+                      className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:text-accent-foreground h-9 rounded-[10px] px-4 w-full sm:w-auto bg-green-100 text-green-600 hover:bg-green-200"
+                      disabled={!inputText.trim()}
+                    >
+                      Check for AI
+                    </button>
+                    <button
+                      onClick={handleHumanize}
+                      disabled={!inputText.trim() || isLoading}
+                      className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-9 bg-green-500 hover:bg-green-600 text-white rounded-[10px] px-4 w-full sm:w-auto"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-sparkles h-4 w-4 mr-2">
+                        <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+                        <path d="M20 3v4" />
+                        <path d="M22 5h-4" />
+                        <path d="M4 17v2" />
+                        <path d="M5 18H3" />
+                      </svg>
+                      {isLoading ? 'Humanizing...' : 'Humanize'}
+                    </button>
+                  </div>
+                </div>
+                
               </div>
-              <button
-                onClick={handleHumanize}
-                disabled={!inputText.trim() || isLoading}
-                className="bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none font-medium py-2.5 px-6 text-sm"
-              >
-                {isLoading ? 'Humanizing...' : 'Humanize Text'}
-              </button>
             </div>
-          </div>
+          </section>
           
           {/* Humanized Output */}
           {humanizedText && (

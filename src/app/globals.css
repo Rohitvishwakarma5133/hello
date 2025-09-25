@@ -277,4 +277,29 @@
   .text-muted-foreground {
     @apply text-slate-600;
   }
+  
+  /* Design system utility classes for competitor-style layout */
+  .border-input {
+    @apply border-slate-200;
+  }
+  
+  .bg-background {
+    @apply bg-white;
+  }
+  
+  .ring-offset-background {
+    --tw-ring-offset-color: white;
+  }
+  
+  .hover\:bg-accent:hover {
+    @apply bg-slate-100;
+  }
+  
+  .hover\:text-accent-foreground:hover {
+    @apply text-slate-900;
+  }
+  
+  .ring-ring {
+    --tw-ring-color: theme('colors.slate.400');
+  }
 }
