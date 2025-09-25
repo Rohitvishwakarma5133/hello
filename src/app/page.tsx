@@ -98,42 +98,50 @@ export default function Home() {
           </div>
 
           {/* Text Input Area */}
-          <div className="bg-white border border-gray-200 rounded-xl shadow-lg p-8 mb-8">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-6">
-                <label className="text-lg font-semibold text-gray-800">Your Text</label>
-                <select className="bg-gray-100 border border-gray-300 rounded-lg px-4 py-2.5 text-gray-700 font-medium text-sm">
+          <div className="bg-white border border-slate-100 rounded-xl shadow-sm p-6 mb-6">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-4">
+                <label className="text-base font-medium text-slate-700">Your Text</label>
+                <select className="bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-slate-600 text-sm">
                   <option>Default</option>
                   <option>Academic</option>
                   <option>Creative</option>
                   <option>Professional</option>
                 </select>
               </div>
-              <button 
-                onClick={handlePasteText}
-                className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg text-gray-700 font-medium transition-colors text-sm"
-              >
-                <Clipboard className="w-4 h-4" />
-                Paste Text
-              </button>
             </div>
             
-            <textarea
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              placeholder="Paste your AI-generated text here to humanize it..."
-              className="w-full h-64 p-4 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 text-gray-800 placeholder:text-gray-500"
-            />
+            {/* Textarea with centered paste button overlay */}
+            <div className="relative">
+              <textarea
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                placeholder="Paste your text here..."
+                className="w-full min-h-[200px] p-4 rounded-xl border border-slate-200 focus:ring-2 focus:ring-green-400 focus:outline-none focus:border-green-400 text-base leading-normal shadow-sm placeholder:text-slate-400 resize-none"
+              />
+              
+              {/* Centered Paste Button - only show when textarea is empty */}
+              {!inputText && (
+                <button 
+                  onClick={handlePasteText}
+                  className="absolute inset-0 m-auto h-10 w-32 bg-white border border-green-400 text-green-500 rounded-full text-sm font-medium hover:bg-green-50 transition-colors flex items-center justify-center gap-2"
+                >
+                  <Clipboard className="w-4 h-4" />
+                  Paste Text
+                </button>
+              )}
+            </div>
             
-            <div className="flex justify-between items-center mt-6">
+            <div className="flex justify-between items-center mt-3">
               <div className="flex items-center gap-4">
-                <span className="text-sm text-gray-500">
-                  {inputText.trim().split(/\s+/).filter(word => word.length > 0).length} words
+                {/* Cleaner word counter */}
+                <span className="text-xs text-slate-400">
+                  {inputText.trim().split(/\s+/).filter(word => word.length > 0).length} / 500 words
                 </span>
                 {aiScore && (
                   <div className="flex items-center gap-2">
-                    <span className="text-sm text-gray-500">Human Score:</span>
-                    <span className={`text-sm font-bold ${
+                    <span className="text-xs text-slate-400">Human Score:</span>
+                    <span className={`text-xs font-medium ${
                       aiScore >= 80 ? 'text-green-600' : 
                       aiScore >= 60 ? 'text-yellow-600' : 'text-red-500'
                     }`}>
@@ -145,7 +153,7 @@ export default function Home() {
               <button
                 onClick={handleHumanize}
                 disabled={!inputText.trim() || isLoading}
-                className="bg-green-500 hover:bg-green-600 text-white rounded-[10px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none font-semibold py-3 px-8 shadow-md hover:shadow-lg"
+                className="bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none font-medium py-2.5 px-6 text-sm"
               >
                 {isLoading ? 'Humanizing...' : 'Humanize Text'}
               </button>
@@ -154,23 +162,33 @@ export default function Home() {
           
           {/* Humanized Output */}
           {humanizedText && (
-            <div className="bg-green-50 border border-green-200 rounded-xl p-8">
-              <div className="flex items-center gap-2 mb-4">
+            <div className="bg-green-50 border border-green-100 rounded-xl p-6 shadow-sm">
+              <div className="flex items-center gap-2 mb-3">
                 <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                <h3 className="text-xl font-semibold text-green-800">Humanized Text</h3>
+                <h3 className="text-lg font-medium text-green-800">Humanized Text</h3>
               </div>
-              <div className="bg-white border border-green-200 rounded-lg p-6">
-                <p className="text-gray-800 leading-relaxed whitespace-pre-wrap">{humanizedText}</p>
+              <div className="bg-white border border-green-100 rounded-xl p-4 shadow-sm">
+                <p className="text-slate-800 leading-relaxed whitespace-pre-wrap text-base">{humanizedText}</p>
+              </div>
+              
+              {/* Copy button */}
+              <div className="mt-3 text-right">
+                <button 
+                  onClick={() => navigator.clipboard.writeText(humanizedText)}
+                  className="text-xs text-slate-400 hover:text-slate-600 transition-colors"
+                >
+                  Copy to clipboard
+                </button>
               </div>
             </div>
           )}
 
           {/* Call to Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <button className="bg-green-500 hover:bg-green-600 text-white rounded-[10px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none font-semibold px-8 py-3 shadow-lg">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6">
+            <button className="bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none font-medium px-6 py-2.5 text-sm">
               Try for Free
             </button>
-            <button className="border-2 border-slate-600 text-slate-600 font-semibold px-8 py-3 rounded-[10px] hover:bg-slate-100 transition-colors">
+            <button className="border border-slate-300 text-slate-600 font-medium px-6 py-2.5 rounded-lg hover:bg-slate-50 transition-colors text-sm">
               View Pricing
             </button>
           </div>
