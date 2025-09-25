@@ -79,20 +79,20 @@ export default function Home() {
       </header>
       
       {/* Hero Section with Integrated Text Input */}
-      <section className="bg-gradient-to-t from-slate-300 to-emerald-100 py-16 px-4">
+      <section className="bg-gradient-to-t from-slate-300 to-emerald-100 py-12 px-4">
         <div className="max-w-4xl mx-auto">
           {/* Hero Content */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             {/* Trust Indicator */}
-            <div className="inline-flex items-center gap-2 bg-white bg-opacity-20 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
+            <div className="inline-flex items-center gap-2 bg-white bg-opacity-20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               <span className="text-sm font-medium text-slate-800">Trusted by 50,000+ users</span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-slate-800">
+            <h1 className="hero-heading text-4xl md:text-5xl font-bold mb-4 text-slate-900">
               Make AI Text Undetectable
             </h1>
-            <p className="text-xl md:text-xl mb-8 max-w-3xl mx-auto leading-relaxed text-slate-700">
+            <p className="text-lg mb-6 max-w-3xl mx-auto text-slate-700">
               Transform AI-generated content into natural, human-like text that bypasses AI detection tools while maintaining quality and meaning.
             </p>
           </div>
@@ -178,10 +178,10 @@ export default function Home() {
       </section>
 
       {/* 3-Step Process Section */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-12 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-slate-900 mb-3">
               How it works
             </h2>
             <p className="text-xl text-gray-600">
@@ -246,14 +246,14 @@ export default function Home() {
       </section>
 
       {/* Built on Science Section */}
-      <section className="bg-gradient-to-t from-slate-300 to-emerald-100 py-16 px-4">
+      <section className="bg-gradient-to-t from-slate-300 to-emerald-100 py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="text-slate-800">
-              <h2 className="text-4xl font-bold mb-6">
+              <h2 className="text-3xl font-bold mb-4 text-slate-900">
                 Built on Science
               </h2>
-              <p className="text-xl text-slate-700 mb-6 leading-relaxed">
+              <p className="text-lg text-slate-700 mb-4">
                 Our AI humanization technology is based on cutting-edge research in natural language processing and machine learning.
               </p>
               <ul className="space-y-4">
@@ -291,10 +291,10 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-12 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-slate-900 mb-3">
               What our users say
             </h2>
             <p className="text-lg text-gray-600">
@@ -349,7 +349,7 @@ export default function Home() {
       </section>
       
       {/* Footer Section */}
-      <footer className="py-12 px-4 bg-gray-100 border-t border-gray-200">
+      <footer className="py-8 px-4 bg-gray-100 border-t border-gray-200">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8">
             <div>

@@ -121,19 +121,19 @@ export default function PricingPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto px-4 py-16">
+      <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Header */}
-        <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold text-black mb-3">
+        <div className="text-center mb-8">
+          <h1 className="hero-heading text-3xl font-bold text-slate-900 mb-3">
             Choose Your Plan
           </h1>
-          <p className="text-base text-[#64748B] max-w-2xl mx-auto">
+          <p className="text-base text-slate-600 max-w-2xl mx-auto">
             Transform your AI-generated content with our powerful humanization tools. Choose the plan that fits your needs.
           </p>
         </div>
 
         {/* Billing Toggle */}
-        <div className="flex items-center justify-center mb-10">
+        <div className="flex items-center justify-center mb-8">
           <div className="inline-flex rounded-[10px] border border-[#64748B]/40 p-1 bg-white">
             <button
               onClick={() => setBilling('monthly')}
@@ -205,11 +205,11 @@ export default function PricingPage() {
         </div>
 
         {/* FAQ or Additional Info */}
-        <div className="text-center bg-gray-50 rounded-lg p-8 mt-14">
-          <h3 className="text-xl font-semibold text-black mb-3">
+        <div className="text-center bg-gray-50 rounded-lg p-6 mt-8">
+          <h3 className="text-lg font-semibold text-slate-900 mb-3">
             Need Help Choosing?
           </h3>
-          <p className="text-[#64748B] mb-6 text-sm">
+          <p className="text-slate-600 mb-4 text-sm">
             All plans come with a 30-day money-back guarantee. Start with any plan and upgrade anytime.
           </p>
           <button className="bg-white text-[#64748B] border border-gray-300 rounded-[10px] px-5 py-2 text-sm hover:bg-gray-100 transition-colors">

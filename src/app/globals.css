@@ -246,7 +246,35 @@
   * {
     @apply border-border outline-ring/50;
   }
+  
+  html {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-slate-900 font-normal;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-slate-900;
+    line-height: 1.25; /* leading-tight equivalent */
+  }
+  
+  /* Only hero headings get extra tight line-height */
+  .hero-heading {
+    line-height: 1.1; /* tighter for big titles */
+  }
+  
+  p {
+    @apply text-slate-900;
+    line-height: 1.5; /* leading-normal */
+  }
+  
+  /* Ensure consistent readable text across components */
+  .text-muted-foreground {
+    @apply text-slate-600;
   }
 }
