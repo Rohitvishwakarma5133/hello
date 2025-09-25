@@ -107,32 +107,27 @@
   --muddy-waters: oklch(0.65 0.10 50);     /* #bb855f */
   --viking: oklch(0.60 0.20 240);          /* #5d8bb */
   
-  /* New Navy-Teal Gradient Palette */
-  --color-primary-navy: #0B1E3D;
-  --color-primary-teal: #1ED6C8;
-  --color-secondary-navy-light: #1a3454;
-  --color-secondary-teal-light: #4de0d6;
-  --color-secondary-teal-dark: #0ba398;
-  --color-accent-teal-50: #f0fdfc;
-  --color-accent-teal-100: #ccfbf1;
-  --color-accent-teal-200: #99f6e4;
-  --color-accent-teal-300: #5eead4;
-  --color-accent-teal-400: #2dd4bf;
-  --color-accent-teal-500: #14b8a6;
-  --color-accent-teal-600: #0d9488;
-  --color-accent-teal-700: #0f766e;
-  --color-accent-teal-800: #115e59;
-  --color-accent-teal-900: #134e4a;
-  --color-neutral-50: #f8fafc;
-  --color-neutral-100: #f1f5f9;
-  --color-neutral-200: #e2e8f0;
-  --color-neutral-300: #cbd5e1;
-  --color-neutral-400: #94a3b8;
-  --color-neutral-500: #64748b;
-  --color-neutral-600: #475569;
-  --color-neutral-700: #334155;
-  --color-neutral-800: #1e293b;
-  --color-neutral-900: #0f172a;
+  /* New Slate-Emerald Gradient Palette */
+  --color-primary-emerald: #10b981;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-200: #a7f3d0;
+  --color-emerald-300: #6ee7b7;
+  --color-emerald-400: #34d399;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+  --color-emerald-800: #065f46;
+  --color-emerald-900: #064e3b;
 }
 
 .dark {
@@ -193,58 +188,57 @@
 /* Gradient Definitions */
 @layer utilities {
   .bg-gradient-primary {
-    background: linear-gradient(180deg, var(--color-primary-navy) 0%, var(--color-primary-teal) 100%);
+    background: linear-gradient(to top, var(--color-slate-300) 0%, var(--color-emerald-100) 100%);
   }
   
   .bg-gradient-primary-diagonal {
-    background: linear-gradient(135deg, var(--color-primary-navy) 0%, var(--color-primary-teal) 100%);
+    background: linear-gradient(135deg, var(--color-slate-300) 0%, var(--color-emerald-100) 100%);
   }
   
   .bg-gradient-accent {
-    background: linear-gradient(135deg, var(--color-accent-teal-500) 0%, var(--color-accent-teal-600) 100%);
+    background: linear-gradient(135deg, var(--color-emerald-500) 0%, var(--color-emerald-600) 100%);
   }
   
   /* Text Colors */
-  .text-primary-navy {
-    color: var(--color-primary-navy);
+  .text-primary-emerald {
+    color: var(--color-primary-emerald);
   }
   
-  .text-primary-teal {
-    color: var(--color-primary-teal);
+  .text-slate {
+    color: var(--color-slate-700);
   }
   
   /* Border Colors */
-  .border-primary-teal {
-    border-color: var(--color-primary-teal);
+  .border-primary-emerald {
+    border-color: var(--color-primary-emerald);
   }
   
   /* Focus States with WCAG AA Contrast */
-  .focus-teal:focus {
-    outline: 2px solid var(--color-accent-teal-500);
+  .focus-emerald:focus {
+    outline: 2px solid var(--color-emerald-500);
     outline-offset: 2px;
   }
   
   /* Button Variants with High Contrast */
   .btn-primary {
-    background-color: var(--color-accent-teal-600);
+    background-color: var(--color-emerald-500);
     color: white;
     transition: background-color 0.2s ease;
   }
   
   .btn-primary:hover {
-    background-color: var(--color-accent-teal-700);
+    background-color: var(--color-emerald-600);
   }
   
   .btn-secondary {
     background-color: transparent;
-    color: white;
-    border: 2px solid white;
+    color: var(--color-slate-700);
+    border: 2px solid var(--color-slate-600);
     transition: all 0.2s ease;
   }
   
   .btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(4px);
+    background-color: var(--color-slate-100);
   }
 }
 

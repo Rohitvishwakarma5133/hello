@@ -53,16 +53,16 @@ export default function Home() {
               </h1>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#" className="text-sm text-slate-600 hover:text-teal-600 transition-colors">
+              <a href="#" className="text-sm text-slate-600 hover:text-green-600 transition-colors">
                 AI Humanizer
               </a>
-              <a href="#" className="text-sm text-slate-600 hover:text-teal-600 transition-colors">
+              <a href="#" className="text-sm text-slate-600 hover:text-green-600 transition-colors">
                 Blog
               </a>
-              <a href="#" className="text-sm text-slate-600 hover:text-teal-600 transition-colors">
+              <a href="#" className="text-sm text-slate-600 hover:text-green-600 transition-colors">
                 Contact
               </a>
-              <a href="#" className="text-sm text-slate-600 hover:text-teal-600 transition-colors">
+              <a href="/pricing" className="text-sm text-slate-600 hover:text-green-600 transition-colors">
                 Pricing
               </a>
             </div>
@@ -70,7 +70,7 @@ export default function Home() {
               <button className="text-sm text-slate-600 hover:text-slate-800 px-3 py-2 transition-colors">
                 Log in
               </button>
-              <button className="text-sm bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors shadow-md">
+              <button className="bg-green-500 hover:bg-green-600 text-white rounded-[10px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none text-sm px-4 py-2 shadow-md">
                 Try for free
               </button>
             </div>
@@ -78,38 +78,28 @@ export default function Home() {
         </div>
       </header>
       
-      {/* Hero Section */}
-      <section style={{background: 'linear-gradient(180deg, #0B1E3D 0%, #1ED6C8 100%)'}} className="py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center text-white">
-          {/* Trust Indicator */}
-          <div className="inline-flex items-center gap-2 bg-white bg-opacity-15 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
-            <div className="w-2 h-2 bg-teal-300 rounded-full animate-pulse"></div>
-            <span className="text-sm font-medium text-white">Trusted by 50,000+ users</span>
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-white">
-            Make AI Text Undetectable
-          </h1>
-          <p className="text-xl md:text-xl mb-8 max-w-3xl mx-auto leading-relaxed text-white opacity-95">
-            Transform AI-generated content into natural, human-like text that bypasses AI detection tools while maintaining quality and meaning.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-slate-800 font-semibold px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors shadow-lg">
-              Try for Free
-            </button>
-            <button className="border-2 border-white text-white font-semibold px-8 py-3 rounded-lg hover:bg-white hover:bg-opacity-15 transition-colors backdrop-blur-sm">
-              View Pricing
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Text Area */}
-      <section className="py-16 px-4">
+      {/* Hero Section with Integrated Text Input */}
+      <section className="bg-gradient-to-t from-slate-300 to-emerald-100 py-16 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white border border-gray-200 rounded-xl shadow-lg p-8">
-            <div className="flex items-center justify-between mb-8">
+          {/* Hero Content */}
+          <div className="text-center mb-12">
+            {/* Trust Indicator */}
+            <div className="inline-flex items-center gap-2 bg-white bg-opacity-20 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium text-slate-800">Trusted by 50,000+ users</span>
+            </div>
+            
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-slate-800">
+              Make AI Text Undetectable
+            </h1>
+            <p className="text-xl md:text-xl mb-8 max-w-3xl mx-auto leading-relaxed text-slate-700">
+              Transform AI-generated content into natural, human-like text that bypasses AI detection tools while maintaining quality and meaning.
+            </p>
+          </div>
+
+          {/* Text Input Area */}
+          <div className="bg-white border border-gray-200 rounded-xl shadow-lg p-8 mb-8">
+            <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-6">
                 <label className="text-lg font-semibold text-gray-800">Your Text</label>
                 <select className="bg-gray-100 border border-gray-300 rounded-lg px-4 py-2.5 text-gray-700 font-medium text-sm">
@@ -121,7 +111,7 @@ export default function Home() {
               </div>
               <button 
                 onClick={handlePasteText}
-                className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-5 py-2.5 rounded-lg text-gray-700 font-medium transition-colors text-sm"
+                className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg text-gray-700 font-medium transition-colors text-sm"
               >
                 <Clipboard className="w-4 h-4" />
                 Paste Text
@@ -132,7 +122,7 @@ export default function Home() {
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               placeholder="Paste your AI-generated text here to humanize it..."
-              className="w-full h-64 p-4 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-gray-800 placeholder:text-gray-500"
+              className="w-full h-64 p-4 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 text-gray-800 placeholder:text-gray-500"
             />
             
             <div className="flex justify-between items-center mt-6">
@@ -144,7 +134,7 @@ export default function Home() {
                   <div className="flex items-center gap-2">
                     <span className="text-sm text-gray-500">Human Score:</span>
                     <span className={`text-sm font-bold ${
-                      aiScore >= 80 ? 'text-teal-600' : 
+                      aiScore >= 80 ? 'text-green-600' : 
                       aiScore >= 60 ? 'text-yellow-600' : 'text-red-500'
                     }`}>
                       {aiScore}%
@@ -155,7 +145,7 @@ export default function Home() {
               <button
                 onClick={handleHumanize}
                 disabled={!inputText.trim() || isLoading}
-                className="bg-teal-600 hover:bg-teal-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 px-8 rounded-lg transition-colors shadow-md hover:shadow-lg"
+                className="bg-green-500 hover:bg-green-600 text-white rounded-[10px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none font-semibold py-3 px-8 shadow-md hover:shadow-lg"
               >
                 {isLoading ? 'Humanizing...' : 'Humanize Text'}
               </button>
@@ -164,16 +154,26 @@ export default function Home() {
           
           {/* Humanized Output */}
           {humanizedText && (
-            <div className="mt-8 bg-teal-50 border border-teal-200 rounded-xl p-8">
+            <div className="bg-green-50 border border-green-200 rounded-xl p-8">
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-3 h-3 bg-teal-500 rounded-full"></div>
-                <h3 className="text-xl font-semibold text-teal-800">Humanized Text</h3>
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <h3 className="text-xl font-semibold text-green-800">Humanized Text</h3>
               </div>
-              <div className="bg-white border border-teal-200 rounded-lg p-6">
+              <div className="bg-white border border-green-200 rounded-lg p-6">
                 <p className="text-gray-800 leading-relaxed whitespace-pre-wrap">{humanizedText}</p>
               </div>
             </div>
           )}
+
+          {/* Call to Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+            <button className="bg-green-500 hover:bg-green-600 text-white rounded-[10px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none font-semibold px-8 py-3 shadow-lg">
+              Try for Free
+            </button>
+            <button className="border-2 border-slate-600 text-slate-600 font-semibold px-8 py-3 rounded-[10px] hover:bg-slate-100 transition-colors">
+              View Pricing
+            </button>
+          </div>
         </div>
       </section>
 
@@ -190,54 +190,54 @@ export default function Home() {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div style={{background: 'linear-gradient(135deg, #0B1E3D 0%, #1ED6C8 100%)'}} className="rounded-2xl p-8 text-white shadow-lg">
-              <div className="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-6">
-                <span className="text-2xl font-bold">1</span>
+            <div className="bg-gradient-to-t from-slate-300 to-emerald-100 rounded-2xl p-8 text-slate-800 shadow-lg">
+              <div className="w-12 h-12 bg-white bg-opacity-40 rounded-lg flex items-center justify-center mb-6">
+                <span className="text-2xl font-bold text-slate-800">1</span>
               </div>
-              <h3 className="text-2xl font-bold mb-4">Paste Your Text</h3>
-              <p className="text-teal-100 mb-6">
+              <h3 className="text-2xl font-bold mb-4 text-slate-800">Paste Your Text</h3>
+              <p className="text-slate-700 mb-6">
                 Simply paste your AI-generated content into our text editor.
               </p>
-              <div className="bg-white bg-opacity-10 rounded-lg p-4">
-                <div className="bg-white bg-opacity-20 rounded p-2 mb-2">
-                  <div className="h-2 bg-white bg-opacity-30 rounded w-3/4"></div>
+              <div className="bg-white bg-opacity-20 rounded-lg p-4">
+                <div className="bg-slate-300 bg-opacity-50 rounded p-2 mb-2">
+                  <div className="h-2 bg-slate-400 rounded w-3/4"></div>
                 </div>
-                <div className="bg-white bg-opacity-20 rounded p-2">
-                  <div className="h-2 bg-white bg-opacity-30 rounded w-1/2"></div>
+                <div className="bg-slate-300 bg-opacity-50 rounded p-2">
+                  <div className="h-2 bg-slate-400 rounded w-1/2"></div>
                 </div>
               </div>
             </div>
             
-            <div style={{background: 'linear-gradient(135deg, #0B1E3D 0%, #1ED6C8 100%)'}} className="rounded-2xl p-8 text-white shadow-lg">
-              <div className="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-6">
-                <span className="text-2xl font-bold">2</span>
+            <div className="bg-gradient-to-t from-slate-300 to-emerald-100 rounded-2xl p-8 text-slate-800 shadow-lg">
+              <div className="w-12 h-12 bg-white bg-opacity-40 rounded-lg flex items-center justify-center mb-6">
+                <span className="text-2xl font-bold text-slate-800">2</span>
               </div>
-              <h3 className="text-2xl font-bold mb-4">AI Processing</h3>
-              <p className="text-teal-100 mb-6">
+              <h3 className="text-2xl font-bold mb-4 text-slate-800">AI Processing</h3>
+              <p className="text-slate-700 mb-6">
                 Our advanced AI analyzes and transforms your content.
               </p>
-              <div className="bg-white bg-opacity-10 rounded-lg p-4">
+              <div className="bg-white bg-opacity-20 rounded-lg p-4">
                 <div className="flex items-center justify-center">
-                  <div className="w-8 h-8 border-2 border-white border-opacity-30 border-t-white rounded-full animate-spin"></div>
+                  <div className="w-8 h-8 border-2 border-slate-600 border-t-green-500 rounded-full animate-spin"></div>
                 </div>
               </div>
             </div>
             
-            <div style={{background: 'linear-gradient(135deg, #0B1E3D 0%, #1ED6C8 100%)'}} className="rounded-2xl p-8 text-white shadow-lg">
-              <div className="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-6">
-                <span className="text-2xl font-bold">3</span>
+            <div className="bg-gradient-to-t from-slate-300 to-emerald-100 rounded-2xl p-8 text-slate-800 shadow-lg">
+              <div className="w-12 h-12 bg-white bg-opacity-40 rounded-lg flex items-center justify-center mb-6">
+                <span className="text-2xl font-bold text-slate-800">3</span>
               </div>
-              <h3 className="text-2xl font-bold mb-4">Get Human Text</h3>
-              <p className="text-teal-100 mb-6">
+              <h3 className="text-2xl font-bold mb-4 text-slate-800">Get Human Text</h3>
+              <p className="text-slate-700 mb-6">
                 Receive natural, human-like content that passes AI detection.
               </p>
-              <div className="bg-white bg-opacity-10 rounded-lg p-4">
+              <div className="bg-white bg-opacity-20 rounded-lg p-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <div className="w-3 h-3 bg-teal-300 rounded-full"></div>
-                  <span className="text-sm">95% Human Score</span>
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <span className="text-sm text-slate-800">95% Human Score</span>
                 </div>
-                <div className="bg-white bg-opacity-20 rounded p-2">
-                  <div className="h-2 bg-white bg-opacity-40 rounded w-full"></div>
+                <div className="bg-slate-300 bg-opacity-50 rounded p-2">
+                  <div className="h-2 bg-green-500 rounded w-full"></div>
                 </div>
               </div>
             </div>
@@ -246,42 +246,42 @@ export default function Home() {
       </section>
 
       {/* Built on Science Section */}
-      <section style={{background: 'linear-gradient(180deg, #0B1E3D 0%, #1ED6C8 100%)'}} className="py-16 px-4">
+      <section className="bg-gradient-to-t from-slate-300 to-emerald-100 py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-white">
+            <div className="text-slate-800">
               <h2 className="text-4xl font-bold mb-6">
                 Built on Science
               </h2>
-              <p className="text-xl text-teal-100 mb-6 leading-relaxed">
+              <p className="text-xl text-slate-700 mb-6 leading-relaxed">
                 Our AI humanization technology is based on cutting-edge research in natural language processing and machine learning.
               </p>
               <ul className="space-y-4">
                 <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-teal-300 rounded-full"></div>
-                  <span className="text-teal-100">Advanced neural network architecture</span>
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-slate-700">Advanced neural network architecture</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-teal-300 rounded-full"></div>
-                  <span className="text-teal-100">Trained on millions of human-written texts</span>
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-slate-700">Trained on millions of human-written texts</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-teal-300 rounded-full"></div>
-                  <span className="text-teal-100">Continuous learning and improvement</span>
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-slate-700">Continuous learning and improvement</span>
                 </li>
               </ul>
             </div>
-            <div className="bg-white bg-opacity-15 backdrop-blur-sm rounded-2xl p-8">
+            <div className="bg-white bg-opacity-30 backdrop-blur-sm rounded-2xl p-8">
               <div className="bg-slate-800 rounded-lg p-4">
                 <div className="flex gap-2 mb-3">
                   <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                   <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-teal-400 rounded-full"></div>
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                 </div>
                 <div className="space-y-2">
                   <div className="h-3 bg-gray-600 rounded w-full"></div>
                   <div className="h-3 bg-gray-600 rounded w-3/4"></div>
-                  <div className="h-3 bg-teal-400 rounded w-1/2"></div>
+                  <div className="h-3 bg-green-500 rounded w-1/2"></div>
                   <div className="h-3 bg-gray-600 rounded w-5/6"></div>
                 </div>
               </div>
