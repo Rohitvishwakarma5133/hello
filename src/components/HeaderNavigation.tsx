@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
@@ -19,13 +18,13 @@ export default function HeaderNavigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <header className="bg-white border-b border-gray-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center py-4">
           {/* Logo/Brand */}
           <div className="flex items-center">
-            <Link href="/" className="text-xl font-bold text-gray-900">
-              AI Humanizer
+            <Link href="/" className="text-xl font-bold text-slate-800">
+              Natural Write
             </Link>
           </div>
 
@@ -38,10 +37,10 @@ export default function HeaderNavigation() {
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    'text-sm font-medium transition-colors',
+                    'text-sm transition-colors',
                     isActive
-                      ? 'text-blue-600'
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? 'text-green-600'
+                      : 'text-slate-600 hover:text-green-600'
                   )}
                 >
                   {item.name}
@@ -53,14 +52,14 @@ export default function HeaderNavigation() {
           {/* Auth Buttons */}
           <div className="flex items-center space-x-4">
             <Link href="/login">
-              <Button variant="ghost" className="text-gray-600 hover:text-gray-900">
+              <button className="text-sm text-slate-600 hover:text-slate-800 px-3 py-2 transition-colors">
                 Log in
-              </Button>
+              </button>
             </Link>
             <Link href="/try-free">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+              <button className="bg-green-500 hover:bg-green-600 text-white rounded-[10px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none text-sm px-4 py-2 shadow-md">
                 Try for free
-              </Button>
+              </button>
             </Link>
 
             {/* Mobile menu button */}
@@ -88,10 +87,10 @@ export default function HeaderNavigation() {
                     key={item.name}
                     href={item.href}
                     className={cn(
-                      'px-3 py-2 text-sm font-medium transition-colors',
+                      'px-3 py-2 text-sm transition-colors',
                       isActive
-                        ? 'text-blue-600'
-                        : 'text-gray-600 hover:text-gray-900'
+                        ? 'text-green-600'
+                        : 'text-slate-600 hover:text-green-600'
                     )}
                     onClick={() => setMobileMenuOpen(false)}
                   >
@@ -100,16 +99,16 @@ export default function HeaderNavigation() {
                 );
               })}
               <hr className="my-4" />
-              <Link href="/login" className="px-3 py-2 text-sm font-medium text-gray-600">
+              <Link href="/login" className="px-3 py-2 text-sm text-slate-600">
                 Log in
               </Link>
               <Link href="/try-free" className="mt-2">
-                <Button 
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                <button 
+                  className="w-full bg-green-500 hover:bg-green-600 text-white rounded-[10px] px-4 py-2 text-sm transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Try for free
-                </Button>
+                </button>
               </Link>
             </nav>
           </div>

@@ -42,41 +42,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center">
-              <h1 className="text-xl font-bold text-slate-800">
-                Natural Write
-              </h1>
-            </div>
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#" className="text-sm text-slate-600 hover:text-green-600 transition-colors">
-                AI Humanizer
-              </a>
-              <a href="#" className="text-sm text-slate-600 hover:text-green-600 transition-colors">
-                Blog
-              </a>
-              <a href="#" className="text-sm text-slate-600 hover:text-green-600 transition-colors">
-                Contact
-              </a>
-              <a href="/pricing" className="text-sm text-slate-600 hover:text-green-600 transition-colors">
-                Pricing
-              </a>
-            </div>
-            <div className="flex items-center space-x-4">
-              <button className="text-sm text-slate-600 hover:text-slate-800 px-3 py-2 transition-colors">
-                Log in
-              </button>
-              <button className="bg-green-500 hover:bg-green-600 text-white rounded-[10px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none text-sm px-4 py-2 shadow-md">
-                Try for free
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-      
       {/* Hero Section with Integrated Text Input */}
       <section className="bg-gradient-to-t from-slate-300 to-emerald-100 py-12 px-4">
         <div className="max-w-4xl mx-auto">
