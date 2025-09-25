@@ -312,7 +312,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="text-gray-700 mb-4 text-sm leading-relaxed">
-                "NaturalWrite helped me humanize AI text from ChatGPT in seconds. It made my writing sound real and passed Turnitin easily. This tool saved my grade."
+&ldquo;NaturalWrite helped me humanize AI text from ChatGPT in seconds. It made my writing sound real and passed Turnitin easily. This tool saved my grade.&rdquo;
               </p>
               <div className="text-sm font-semibold text-gray-900">Julia K., Student</div>
             </div>
@@ -326,7 +326,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="text-gray-700 mb-4 text-sm leading-relaxed">
-                "I've tried several tools to bypass AI detectors, but nothing compares to NaturalWrite. It's fast, accurate, and the free humanize AI text feature is a lifesaver."
+&ldquo;I&rsquo;ve tried several tools to bypass AI detectors, but nothing compares to NaturalWrite. It&rsquo;s fast, accurate, and the free humanize AI text feature is a lifesaver.&rdquo;
               </p>
               <div className="text-sm font-semibold text-gray-900">Liam R., Content Writer</div>
             </div>
@@ -340,7 +340,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="text-gray-700 mb-4 text-sm leading-relaxed">
-                "The best thing about NaturalWrite? I can humanize my text and rewrite AI drafts without losing quality. It feels like a real editor polished it."
+&ldquo;The best thing about NaturalWrite? I can humanize my text and rewrite AI drafts without losing quality. It feels like a real editor polished it.&rdquo;
               </p>
               <div className="text-sm font-semibold text-gray-900">Sophie M., Freelancer</div>
             </div>

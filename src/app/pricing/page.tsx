@@ -12,6 +12,7 @@ const monthlyPlans = [
     price: '$8.99',
     period: 'month',
     wordLimit: '5,000 words per month',
+    monthlyEquivalent: undefined,
     features: [
       '5,000 words per month',
       '500 words per request',
@@ -30,6 +31,7 @@ const monthlyPlans = [
     period: 'month',
     wordLimit: '15,000 words per month',
     popular: true,
+    monthlyEquivalent: undefined,
     features: [
       '15,000 words per month',
       '1,500 words per request',
@@ -52,6 +54,7 @@ const monthlyPlans = [
     price: '$49.99',
     period: 'month',
     wordLimit: '30,000 words per month',
+    monthlyEquivalent: undefined,
     features: [
       '30,000 words per month',
       '3,000 words per request',
