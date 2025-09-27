@@ -255,15 +255,6 @@ export default function Home() {
             </div>
           )}
 
-          {/* Call to Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6">
-            <button className="bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none font-medium px-6 py-2.5 text-sm">
-              Try for Free
-            </button>
-            <button className="border border-slate-300 text-slate-600 font-medium px-6 py-2.5 rounded-lg hover:bg-slate-50 transition-colors text-sm">
-              View Pricing
-            </button>
-          </div>
         </div>
       </section>
 
