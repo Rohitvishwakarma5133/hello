@@ -258,6 +258,131 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Social Proof Section */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+              Backed by students and researchers worldwide
+            </h2>
+            <p className="text-sm text-slate-600 max-w-2xl mx-auto">
+              Trusted for essays, reports, and publications that sound professional and human.
+            </p>
+          </div>
+          
+          {/* University Logos Scrolling Banner */}
+          <div className="relative overflow-hidden">
+            {/* Gradient overlays for smooth edges */}
+            <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-white to-transparent z-10"></div>
+            <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-white to-transparent z-10"></div>
+            
+            <div className="flex animate-scroll space-x-8 md:space-x-12 lg:space-x-16">
+              {/* First set of logos */}
+              <div className="flex items-center justify-center min-w-[100px] sm:min-w-[120px] md:min-w-[150px] h-12 sm:h-16 md:h-20">
+                <img 
+                  src="/logos/universities/HarvardMedicalSchool.png" 
+                  alt="Harvard Medical School" 
+                  className="max-h-8 sm:max-h-10 md:max-h-14 w-auto opacity-50 hover:opacity-80 transition-all duration-300 filter grayscale hover:grayscale-0"
+                />
+              </div>
+              <div className="flex items-center justify-center min-w-[100px] sm:min-w-[120px] md:min-w-[150px] h-12 sm:h-16 md:h-20">
+                <img 
+                  src="/logos/universities/MIT.png" 
+                  alt="MIT" 
+                  className="max-h-8 sm:max-h-10 md:max-h-14 w-auto opacity-50 hover:opacity-80 transition-all duration-300 filter grayscale hover:grayscale-0"
+                />
+              </div>
+              <div className="flex items-center justify-center min-w-[100px] sm:min-w-[120px] md:min-w-[150px] h-12 sm:h-16 md:h-20">
+                <img 
+                  src="/logos/universities/StanfordUniversity.png" 
+                  alt="Stanford University" 
+                  className="max-h-8 sm:max-h-10 md:max-h-14 w-auto opacity-50 hover:opacity-80 transition-all duration-300 filter grayscale hover:grayscale-0"
+                />
+              </div>
+              <div className="flex items-center justify-center min-w-[100px] sm:min-w-[120px] md:min-w-[150px] h-12 sm:h-16 md:h-20">
+                <img 
+                  src="/logos/universities/Yale.png" 
+                  alt="Yale University" 
+                  className="max-h-8 sm:max-h-10 md:max-h-14 w-auto opacity-50 hover:opacity-80 transition-all duration-300 filter grayscale hover:grayscale-0"
+                />
+              </div>
+              <div className="flex items-center justify-center min-w-[100px] sm:min-w-[120px] md:min-w-[150px] h-12 sm:h-16 md:h-20">
+                <img 
+                  src="/logos/universities/oxford.png" 
+                  alt="Oxford University" 
+                  className="max-h-8 sm:max-h-10 md:max-h-14 w-auto opacity-50 hover:opacity-80 transition-all duration-300 filter grayscale hover:grayscale-0"
+                />
+              </div>
+              <div className="flex items-center justify-center min-w-[100px] sm:min-w-[120px] md:min-w-[150px] h-12 sm:h-16 md:h-20">
+                <img 
+                  src="/logos/universities/cambridge.png" 
+                  alt="Cambridge University" 
+                  className="max-h-8 sm:max-h-10 md:max-h-14 w-auto opacity-50 hover:opacity-80 transition-all duration-300 filter grayscale hover:grayscale-0"
+                />
+              </div>
+              <div className="flex items-center justify-center min-w-[100px] sm:min-w-[120px] md:min-w-[150px] h-12 sm:h-16 md:h-20">
+                <img 
+                  src="/logos/universities/PrincetonUniversity.png" 
+                  alt="Princeton University" 
+                  className="max-h-8 sm:max-h-10 md:max-h-14 w-auto opacity-50 hover:opacity-80 transition-all duration-300 filter grayscale hover:grayscale-0"
+                />
+              </div>
+              <div className="flex items-center justify-center min-w-[100px] sm:min-w-[120px] md:min-w-[150px] h-12 sm:h-16 md:h-20">
+                <img 
+                  src="/logos/universities/Yonsei_University.png" 
+                  alt="Yonsei University" 
+                  className="max-h-8 sm:max-h-10 md:max-h-14 w-auto opacity-50 hover:opacity-80 transition-all duration-300 filter grayscale hover:grayscale-0"
+                />
+              </div>
+              
+              {/* Duplicate set for seamless loop */}
+              <div className="flex items-center justify-center min-w-[100px] sm:min-w-[120px] md:min-w-[150px] h-12 sm:h-16 md:h-20">
+                <img 
+                  src="/logos/universities/HarvardMedicalSchool.png" 
+                  alt="Harvard Medical School" 
+                  className="max-h-8 sm:max-h-10 md:max-h-14 w-auto opacity-50 hover:opacity-80 transition-all duration-300 filter grayscale hover:grayscale-0"
+                />
+              </div>
+              <div className="flex items-center justify-center min-w-[100px] sm:min-w-[120px] md:min-w-[150px] h-12 sm:h-16 md:h-20">
+                <img 
+                  src="/logos/universities/MIT.png" 
+                  alt="MIT" 
+                  className="max-h-8 sm:max-h-10 md:max-h-14 w-auto opacity-50 hover:opacity-80 transition-all duration-300 filter grayscale hover:grayscale-0"
+                />
+              </div>
+              <div className="flex items-center justify-center min-w-[100px] sm:min-w-[120px] md:min-w-[150px] h-12 sm:h-16 md:h-20">
+                <img 
+                  src="/logos/universities/StanfordUniversity.png" 
+                  alt="Stanford University" 
+                  className="max-h-8 sm:max-h-10 md:max-h-14 w-auto opacity-50 hover:opacity-80 transition-all duration-300 filter grayscale hover:grayscale-0"
+                />
+              </div>
+              <div className="flex items-center justify-center min-w-[100px] sm:min-w-[120px] md:min-w-[150px] h-12 sm:h-16 md:h-20">
+                <img 
+                  src="/logos/universities/Yale.png" 
+                  alt="Yale University" 
+                  className="max-h-8 sm:max-h-10 md:max-h-14 w-auto opacity-50 hover:opacity-80 transition-all duration-300 filter grayscale hover:grayscale-0"
+                />
+              </div>
+              <div className="flex items-center justify-center min-w-[100px] sm:min-w-[120px] md:min-w-[150px] h-12 sm:h-16 md:h-20">
+                <img 
+                  src="/logos/universities/oxford.png" 
+                  alt="Oxford University" 
+                  className="max-h-8 sm:max-h-10 md:max-h-14 w-auto opacity-50 hover:opacity-80 transition-all duration-300 filter grayscale hover:grayscale-0"
+                />
+              </div>
+              <div className="flex items-center justify-center min-w-[100px] sm:min-w-[120px] md:min-w-[150px] h-12 sm:h-16 md:h-20">
+                <img 
+                  src="/logos/universities/cambridge.png" 
+                  alt="Cambridge University" 
+                  className="max-h-8 sm:max-h-10 md:max-h-14 w-auto opacity-50 hover:opacity-80 transition-all duration-300 filter grayscale hover:grayscale-0"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 3-Step Process Section */}
       <section className="py-12 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
