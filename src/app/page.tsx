@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import FeaturePills from '@/components/FeaturePills';
 
 export default function Home() {
   const [inputText, setInputText] = useState('');
@@ -76,6 +77,9 @@ export default function Home() {
             <p className="text-lg mb-6 max-w-3xl mx-auto text-slate-700">
               Transform AI-generated content into natural, human-like text that bypasses AI detection tools while maintaining quality and meaning.
             </p>
+            
+            {/* Feature Pills */}
+            <FeaturePills />
           </div>
 
           {/* Text Input Area - Competitor Style */}
