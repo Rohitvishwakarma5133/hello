@@ -1,12 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [aiScore, setAiScore] = useState<number | null>(null);
   const [humanizedText, setHumanizedText] = useState('');
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedStyle, setSelectedStyle] = useState('Default');
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (showDropdown && !target.closest('.dropdown-container')) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showDropdown]);
 
   const handlePasteText = async () => {
     try {
@@ -69,22 +86,80 @@ export default function Home() {
                 {/* Header with title and mode selector */}
                 <div className="p-4 flex justify-between items-center">
                   <h2 className="font-semibold">Your Text</h2>
-                  <button 
-                    className="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent h-10 px-4 py-2 flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 cursor-pointer"
-                    type="button"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-sparkles h-4 w-4">
-                      <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
-                      <path d="M20 3v4" />
-                      <path d="M22 5h-4" />
-                      <path d="M4 17v2" />
-                      <path d="M5 18H3" />
-                    </svg>
-                    Default
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down h-4 w-4">
-                      <path d="m6 9 6 6 6-6" />
-                    </svg>
-                  </button>
+                  <div className="relative dropdown-container">
+                    <button 
+                      className="justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-slate-100 h-10 px-4 py-2 flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 cursor-pointer"
+                      type="button"
+                      onClick={() => setShowDropdown(!showDropdown)}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-sparkles h-4 w-4">
+                        <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+                        <path d="M20 3v4" />
+                        <path d="M22 5h-4" />
+                        <path d="M4 17v2" />
+                        <path d="M5 18H3" />
+                      </svg>
+                      {selectedStyle}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`lucide lucide-chevron-down h-4 w-4 transition-transform ${showDropdown ? 'rotate-180' : ''}`}>
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </button>
+                    
+                    {/* Dropdown Menu */}
+                    {showDropdown && (
+                      <div className="absolute top-full right-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                        <div className="p-3">
+                          {/* Default Option */}
+                          <div 
+                            className={`p-3 rounded-lg cursor-pointer transition-colors ${
+                              selectedStyle === 'Default' ? 'bg-slate-50 border border-slate-200' : 'hover:bg-slate-50'
+                            }`}
+                            onClick={() => {
+                              setSelectedStyle('Default');
+                              setShowDropdown(false);
+                            }}
+                          >
+                            <div className="flex items-center gap-2 mb-2">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-sparkles">
+                                <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+                                <path d="M20 3v4" />
+                                <path d="M22 5h-4" />
+                                <path d="M4 17v2" />
+                                <path d="M5 18H3" />
+                              </svg>
+                              <span className="font-medium text-slate-900">Default</span>
+                            </div>
+                            <p className="text-sm text-slate-600">Adapts naturally to the tone of your input.</p>
+                          </div>
+                          
+                          {/* Personal Touch Option */}
+                          <div 
+                            className={`p-3 rounded-lg cursor-pointer transition-colors mt-2 ${
+                              selectedStyle === 'Personal Touch' ? 'bg-slate-50 border border-slate-200' : 'hover:bg-slate-50'
+                            }`}
+                            onClick={() => {
+                              setSelectedStyle('Personal Touch');
+                              setShowDropdown(false);
+                            }}
+                          >
+                            <div className="flex items-center justify-between mb-2">
+                              <div className="flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user">
+                                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                  <circle cx="12" cy="7" r="4" />
+                                </svg>
+                                <span className="font-medium text-slate-900">Personal Touch</span>
+                              </div>
+                              <button className="bg-green-500 hover:bg-green-600 text-white text-xs px-3 py-1 rounded-full font-medium transition-colors">
+                                Upgrade
+                              </button>
+                            </div>
+                            <p className="text-sm text-slate-600">Responses tailored to match your natural writing style.</p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
                 
                 {/* Textarea with centered paste button */}
