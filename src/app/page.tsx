@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import FeaturePills from '@/components/FeaturePills';
 import FAQSection from '@/components/FAQSection';
+import AICompatibilitySection from '@/components/AICompatibilitySection';
 
 export default function Home() {
   const [inputText, setInputText] = useState('');
@@ -262,6 +263,9 @@ export default function Home() {
 
         </div>
       </section>
+
+      {/* AI Compatibility Section */}
+      <AICompatibilitySection />
 
       {/* 3-Step Process Section */}
       <section className="py-12 px-4 bg-gray-50">
