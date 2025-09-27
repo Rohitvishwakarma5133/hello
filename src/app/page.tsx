@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import FeaturePills from '@/components/FeaturePills';
+import FAQSection from '@/components/FAQSection';
 
 export default function Home() {
   const [inputText, setInputText] = useState('');
@@ -557,6 +558,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
+      {/* FAQ Section */}
+      <FAQSection />
       
       {/* Footer Section */}
       <footer className="py-8 px-4 bg-gray-100 border-t border-gray-200">
