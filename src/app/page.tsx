@@ -5,6 +5,7 @@ import FeaturePills from '@/components/FeaturePills';
 import FAQSection from '@/components/FAQSection';
 import AICompatibilitySection from '@/components/AICompatibilitySection';
 import FeaturesSection from '@/components/FeaturesSection';
+import FooterCTASection from '@/components/FooterCTASection';
 
 export default function Home() {
   const [inputText, setInputText] = useState('');
@@ -456,6 +457,9 @@ export default function Home() {
       
       {/* FAQ Section */}
       <FAQSection />
+      
+      {/* Footer CTA Section */}
+      <FooterCTASection />
       
       {/* Footer Section */}
       <footer className="py-8 px-4 bg-gray-100 border-t border-gray-200">
