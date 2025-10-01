@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import FeaturePills from '@/components/FeaturePills';
 import FAQSection from '@/components/FAQSection';
 import AICompatibilitySection from '@/components/AICompatibilitySection';
@@ -8,12 +9,28 @@ import FeaturesSection from '@/components/FeaturesSection';
 import FooterCTASection from '@/components/FooterCTASection';
 
 export default function Home() {
+  const router = useRouter();
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [aiScore, setAiScore] = useState<number | null>(null);
   const [humanizedText, setHumanizedText] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedStyle, setSelectedStyle] = useState('Default');
+  
+  // Mock user state - in a real app, this would come from context/auth provider
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isPremium, setIsPremium] = useState(false);
+
+  // Check user authentication status on mount
+  useEffect(() => {
+    // In a real app, you would check localStorage, cookies, or make an API call
+    // For demo purposes, we'll simulate checking for auth token
+    const authToken = localStorage.getItem('authToken');
+    const userPlan = localStorage.getItem('userPlan');
+    
+    setIsLoggedIn(!!authToken);
+    setIsPremium(userPlan === 'premium');
+  }, []);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -27,8 +44,27 @@ export default function Home() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
-    };
+    }
   }, [showDropdown]);
+
+  const handleUpgradeClick = () => {
+    // If user is not logged in or not premium, redirect to login
+    if (!isLoggedIn || !isPremium) {
+      router.push('/login');
+      return;
+    }
+    // If user is logged in and premium, allow selection
+    setSelectedStyle('Personal Touch');
+    setShowDropdown(false);
+  };
+
+  // Helper function for testing - simulate user login (for development/demo)
+  const simulateLogin = (premium = false) => {
+    localStorage.setItem('authToken', 'demo-token-123');
+    localStorage.setItem('userPlan', premium ? 'premium' : 'basic');
+    setIsLoggedIn(true);
+    setIsPremium(premium);
+  };
 
   const handlePasteText = async () => {
     try {
@@ -142,13 +178,9 @@ export default function Home() {
                           
                           {/* Personal Touch Option */}
                           <div 
-                            className={`p-3 rounded-lg cursor-pointer transition-colors mt-2 ${
+                            className={`p-3 rounded-lg transition-colors mt-2 ${
                               selectedStyle === 'Personal Touch' ? 'bg-slate-50 border border-slate-200' : 'hover:bg-slate-50'
                             }`}
-                            onClick={() => {
-                              setSelectedStyle('Personal Touch');
-                              setShowDropdown(false);
-                            }}
                           >
                             <div className="flex items-center justify-between mb-2">
                               <div className="flex items-center gap-2">
@@ -158,11 +190,14 @@ export default function Home() {
                                 </svg>
                                 <span className="font-medium text-slate-900">Personal Touch</span>
                               </div>
-                              <button className="bg-green-500 hover:bg-green-600 text-white text-xs px-3 py-1 rounded-full font-medium transition-colors">
+                              <button 
+                                onClick={handleUpgradeClick}
+                                className="bg-green-500 hover:bg-green-600 text-white text-xs px-3 py-1 rounded-full font-medium transition-colors"
+                              >
                                 Upgrade
                               </button>
                             </div>
-                            <p className="text-sm text-slate-600">Responses tailored to match your natural writing style.</p>
+                            <p className="text-sm text-slate-600">Unlock advanced humanization with richer tone and vocabulary</p>
                           </div>
                         </div>
                       </div>

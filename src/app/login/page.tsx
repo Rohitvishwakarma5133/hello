@@ -21,7 +21,10 @@ export default function LoginPage() {
     // Handle authentication logic here
     console.log('Form submitted:', formData);
     
-    // For demo purposes, redirect to dashboard
+    // For demo purposes, set auth tokens and redirect
+    localStorage.setItem('authToken', 'demo-token-123');
+    localStorage.setItem('userPlan', 'premium'); // Grant premium for demo
+    
     window.location.href = '/dashboard';
   };
 
