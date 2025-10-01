@@ -76,25 +76,61 @@ export default function Home() {
   };
 
   const handleHumanize = async () => {
-    if (!inputText.trim()) return;
+    if (!inputText.trim()) {
+      console.log('No input text provided');
+      return;
+    }
+    
+    console.log('Starting humanization for text:', inputText.substring(0, 50) + '...');
     setIsLoading(true);
     
     try {
+      console.log('📡 Making fetch request to /api/humanize');
+      console.log('🔄 Request payload:', { text: inputText.substring(0, 100) + '...' });
+      
+      // Determine intensity based on selected style
+      let intensity: 'light' | 'medium' | 'strong' = 'medium';
+      if (selectedStyle === 'Personal Touch') {
+        intensity = 'strong';
+      }
+      
+      console.log('🎯 Using intensity level:', intensity, 'for style:', selectedStyle);
+      
       const res = await fetch('/api/humanize', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: inputText }),
+        body: JSON.stringify({ 
+          text: inputText,
+          options: {
+            intensity: intensity,
+            preserveFormatting: true
+          }
+        }),
       });
+      
+      console.log('📨 Fetch completed, response received');
+      
+      console.log('API response status:', res.status, res.statusText);
       
       if (res.ok) {
         const data = await res.json();
+        console.log('API response data:', data);
+        console.log('🔄 About to set humanized text:', data.humanizedText?.substring(0, 50) + '...');
         setHumanizedText(data.humanizedText);
         setAiScore(95); // Show high human score after humanization
+        console.log('✅ Successfully set humanized text and AI score');
+        console.log('📈 Current humanizedText state should now be:', data.humanizedText?.substring(0, 50) + '...');
+      } else {
+        const errorText = await res.text();
+        console.error('API returned error:', res.status, errorText);
+        alert(`Error: ${res.status} - ${errorText}`);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Network or parsing error:', error);
+      alert(`Network error: ${error.message}`);
     } finally {
       setIsLoading(false);
+      console.log('Humanization process completed');
     }
   };
 
@@ -255,7 +291,12 @@ export default function Home() {
                       Check for AI
                     </button>
                     <button
-                      onClick={handleHumanize}
+                      onClick={(e) => {
+                        console.log('🖱️ Humanize button clicked!');
+                        console.log('Input text length:', inputText.length);
+                        console.log('Is loading:', isLoading);
+                        handleHumanize();
+                      }}
                       disabled={!inputText.trim() || isLoading}
                       className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-9 bg-green-500 hover:bg-green-600 text-white rounded-[10px] px-4 w-full sm:w-auto"
                     >

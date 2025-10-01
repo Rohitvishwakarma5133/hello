@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Test - Humanize API</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        textarea { width: 100%; height: 150px; margin: 10px 0; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        .result { background: #f5f5f5; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .error { background: #ffebee; color: #c62828; }
+        .success { background: #e8f5e8; color: #2e7d32; }
+    </style>
+</head>
+<body>
+    <h1>Debug Test - Humanize API</h1>
+    
+    <div>
+        <label for="inputText">Input Text:</label>
+        <textarea id="inputText" placeholder="Paste your text here...">Due to the fact that we need to make a decision in regard to the implementation of the system, it is important to note that we cannot proceed. We do not want to take into consideration all factors.</textarea>
+    </div>
+    
+    <button onclick="testAPI()" id="testBtn">Test Humanize API</button>
+    <button onclick="clearResults()">Clear Results</button>
+    
+    <div id="results"></div>
+
+    <script>
+        async function testAPI() {
+            const inputText = document.getElementById('inputText').value;
+            const resultsDiv = document.getElementById('results');
+            const testBtn = document.getElementById('testBtn');
+            
+            if (!inputText.trim()) {
+                addResult('Please enter some text to test', 'error');
+                return;
+            }
+            
+            testBtn.disabled = true;
+            testBtn.textContent = 'Testing...';
+            
+            addResult('Starting API test...', 'info');
+            
+            try {
+                const response = await fetch('/api/humanize', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ text: inputText })
+                });
+                
+                addResult(`Response status: ${response.status} ${response.statusText}`, 'info');
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    addResult('Success! API responded correctly:', 'success');
+                    addResult(`Original: ${data.originalText}`, 'info');
+                    addResult(`Humanized: ${data.humanizedText}`, 'success');
+                    addResult(`Improvements: ${data.improvements.join(', ')}`, 'info');
+                    addResult(`Stats: ${JSON.stringify(data.stats, null, 2)}`, 'info');
+                } else {
+                    const errorData = await response.text();
+                    addResult(`Error response: ${errorData}`, 'error');
+                }
+            } catch (error) {
+                addResult(`Network error: ${error.message}`, 'error');
+                console.error('Full error:', error);
+            }
+            
+            testBtn.disabled = false;
+            testBtn.textContent = 'Test Humanize API';
+        }
+        
+        function addResult(message, type = 'info') {
+            const resultsDiv = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = `result ${type}`;
+            div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            resultsDiv.appendChild(div);
+        }
+        
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+    </script>
+</body>
+</html>

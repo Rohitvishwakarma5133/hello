@@ -12,6 +12,10 @@ export function getTextStats(text: string): TextStats {
 export function humanizeText(text: string, intensity: 'light' | 'medium' | 'strong' = 'medium'): { humanizedText: string; improvements: string[] } {
   let humanizedText = text;
   const improvements: string[] = [];
+  
+  console.log('🔧 Starting humanization with intensity:', intensity);
+  console.log('📝 Original text length:', text.length, 'characters');
+  console.log('📄 Original text preview:', text.substring(0, 100) + '...');
 
   // Remove excessive punctuation
   if (humanizedText.includes('!!!') || humanizedText.includes('???')) {
@@ -31,6 +35,62 @@ export function humanizeText(text: string, intensity: 'light' | 'medium' | 'stro
     'make a decision': ['decide'],
     'come to a conclusion': ['conclude'],
     'take into consideration': ['consider'],
+    'a large number of': ['many', 'lots of'],
+    'a great deal of': ['much', 'lots of'],
+    'prior to': ['before'],
+    'subsequent to': ['after'],
+    'with regard to': ['about', 'regarding'],
+    'in relation to': ['about', 'regarding'],
+    'for the reason that': ['because', 'since'],
+    'in spite of the fact that': ['although', 'even though'],
+    'during the time that': ['while'],
+    'at the present time': ['now', 'currently'],
+    'in the near future': ['soon'],
+    'at a later date': ['later'],
+    'in the final analysis': ['finally', 'in the end'],
+    'for all intents and purposes': ['basically', 'essentially'],
+    'give consideration to': ['consider'],
+    'make an attempt': ['try'],
+    'put forth the effort': ['try'],
+    'conduct an investigation': ['investigate'],
+    'perform an analysis': ['analyze'],
+    'utilize': ['use'],
+    'demonstrate': ['show'],
+    'indicate': ['show'],
+    'facilitate': ['help', 'make easier'],
+    'endeavor': ['try'],
+    'ascertain': ['find out'],
+    'commence': ['start', 'begin'],
+    'terminate': ['end', 'stop'],
+    'implement': ['carry out', 'do'],
+    'methodology': ['method', 'way'],
+    'optimization': ['improvement'],
+    'enhancement': ['improvement'],
+    'modification': ['change'],
+    'transformation': ['change'],
+    'acquisition': ['getting', 'buying'],
+    'accommodation': ['room', 'space'],
+    'approximation': ['estimate', 'guess'],
+    'classification': ['grouping', 'type'],
+    'communication': ['message', 'talk'],
+    'compensation': ['payment', 'pay'],
+    'documentation': ['papers', 'records'],
+    'establishment': ['setting up', 'creation'],
+    'examination': ['check', 'review'],
+    'expenditure': ['cost', 'expense'],
+    'explanation': ['reason', 'answer'],
+    'implementation': ['doing', 'carrying out'],
+    'information': ['details', 'facts'],
+    'investigation': ['study', 'research'],
+    'maintenance': ['upkeep'],
+    'observation': ['watching', 'seeing'],
+    'participation': ['taking part'],
+    'preparation': ['getting ready'],
+    'recommendation': ['suggestion', 'advice'],
+    'requirement': ['need'],
+    'specification': ['detail', 'requirement'],
+    'transportation': ['transport', 'travel'],
+    'understanding': ['knowledge', 'grasp'],
   };
 
   Object.entries(formalReplacements).forEach(([formal, casual]) => {
@@ -39,6 +99,54 @@ export function humanizeText(text: string, intensity: 'light' | 'medium' | 'stro
       const replacement = casual[Math.floor(Math.random() * casual.length)];
       humanizedText = humanizedText.replace(regex, replacement);
       improvements.push(`Simplified "${formal}" to "${replacement}"`);
+      console.log('🔄 Replaced:', formal, '->', replacement);
+    }
+  });
+  
+  // Additional simple word replacements for more natural language
+  const simpleReplacements: { [key: string]: string[] } = {
+    'obtain': ['get'],
+    'purchase': ['buy'],
+    'assist': ['help'],
+    'attempt': ['try'],
+    'complete': ['finish', 'done'],
+    'construct': ['build', 'make'],
+    'contribute': ['help', 'give'],
+    'eliminate': ['remove', 'get rid of'],
+    'encounter': ['meet', 'find'],
+    'generate': ['make', 'create'],
+    'locate': ['find'],
+    'maintain': ['keep'],
+    'operate': ['run', 'work'],
+    'possess': ['have', 'own'],
+    'produce': ['make'],
+    'provide': ['give'],
+    'require': ['need'],
+    'substantial': ['big', 'large'],
+    'sufficient': ['enough'],
+    'numerous': ['many'],
+    'additional': ['more', 'extra'],
+    'extremely': ['very', 'really'],
+    'particularly': ['especially'],
+    'significantly': ['a lot', 'much'],
+    'approximately': ['about', 'around'],
+    'consequently': ['so', 'therefore'],
+    'furthermore': ['also', 'plus'],
+    'nevertheless': ['but', 'however'],
+    'therefore': ['so'],
+    'thus': ['so'],
+    'hence': ['so'],
+    'accordingly': ['so'],
+    'moreover': ['also', 'plus'],
+  };
+  
+  Object.entries(simpleReplacements).forEach(([formal, casual]) => {
+    const regex = new RegExp(`\\b${formal}\\b`, 'gi');
+    if (regex.test(humanizedText)) {
+      const replacement = casual[Math.floor(Math.random() * casual.length)];
+      humanizedText = humanizedText.replace(regex, replacement);
+      improvements.push(`Made more casual: "${formal}" → "${replacement}"`);
+      console.log('🗣️ Simplified word:', formal, '->', replacement);
     }
   });
 
@@ -153,6 +261,12 @@ export function humanizeText(text: string, intensity: 'light' | 'medium' | 'stro
     });
   }
 
+  console.log('✅ Humanization completed!');
+  console.log('📊 Total improvements made:', improvements.length);
+  console.log('📝 Final text length:', humanizedText.length, 'characters');
+  console.log('📄 Final text preview:', humanizedText.substring(0, 100) + '...');
+  console.log('🎆 Improvements:', improvements);
+  
   return { humanizedText, improvements };
 }
 
