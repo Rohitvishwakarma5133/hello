@@ -1,0 +1,76 @@
+{
+  "pipeline": {
+    "stages": {
+      "whitespace_normalization": true,
+      "punctuation_handling": true,
+      "structural_analysis": true
+    },
+    "stage_order": [
+      "whitespace_normalization",
+      "punctuation_handling", 
+      "structural_analysis"
+    ],
+    "error_handling": {
+      "stop_on_error": false,
+      "max_errors": 5,
+      "error_recovery": true
+    },
+    "performance": {
+      "enable_stats": true,
+      "log_level": "INFO",
+      "timeout_seconds": 300
+    },
+    "output_options": {
+      "preserve_original": true,
+      "detailed_report": true,
+      "include_metadata": true
+    }
+  },
+  "whitespace_normalization": {
+    "tab_to_spaces": 4,
+    "normalize_line_breaks": true,
+    "line_break_style": "\n",
+    "remove_trailing_spaces": true,
+    "normalize_unicode_spaces": true,
+    "max_consecutive_spaces": 1,
+    "preserve_paragraph_breaks": true,
+    "trim_lines": true
+  },
+  "punctuation_handling": {
+    "fix_extra_punctuation": true,
+    "add_missing_spaces": true,
+    "standardize_quotes": true,
+    "preferred_quote_style": "double",
+    "normalize_ellipses": true,
+    "normalize_apostrophes": true,
+    "fix_sentence_spacing": true,
+    "preserve_code_blocks": true,
+    "max_consecutive_punctuation": 3,
+    "smart_quote_conversion": true
+  },
+  "structural_analysis": {
+    "detect_markdown": true,
+    "detect_html": true,
+    "detect_code_blocks": true,
+    "preserve_hierarchy": true,
+    "extract_metadata": true,
+    "normalize_headings": true,
+    "detect_tables": true,
+    "detect_links": true,
+    "max_heading_level": 6,
+    "code_languages": [
+      "python", 
+      "javascript", 
+      "java", 
+      "cpp", 
+      "html", 
+      "css", 
+      "sql",
+      "typescript",
+      "go",
+      "rust",
+      "php",
+      "ruby"
+    ]
+  }
+}
